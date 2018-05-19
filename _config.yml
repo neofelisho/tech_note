@@ -12,8 +12,8 @@ gems                : ["jekyll-paginate"]
 paginate            : 5
 
 # Setup
-title               : Neo's メモ帳
-tagline             : C#
+title               : 尼欧のメモ帳
+tagline             : Programming
 description         : Neo's memo about programming
 author:
   name              : "Neo Ho"
