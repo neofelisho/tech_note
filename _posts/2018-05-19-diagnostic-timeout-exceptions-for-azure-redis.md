@@ -1,4 +1,13 @@
+---
+layout      : post
+title       : "Diagnostic timeout exceptions in StackExchange.Redis for Azure Redis Cache"
+date        : 2018-05-19 20:51:00 +0800
+categories  : post
+tags        : [azure, redis, timeout, application insights]
+---
+
 # Diagnostic timeout exceptions in StackExchange.Redis for Azure Redis Cache
+###### tags: `azure` `redis` `timeout` `application insights`
 
 ## Problems
 ![Picture-01](https://2.bp.blogspot.com/-vtXs8coCoXg/Wv_I92kcKjI/AAAAAAAAUaU/tKeRGJ_QT2YmBwJ-6EH2zSbmHfbayCkfwCLcBGAs/s1600/Diagnostic-timeout-exceptions-for-redis-01.png)
