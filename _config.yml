@@ -1,6 +1,6 @@
 # Site
-url                 : http://xareelee.github.io
-baseurl             : /tech_note
+url                 : http://neofelisho.github.io
+baseurl             : /neofelisho.github.io
 
 # Dependencies
 kramdown:
@@ -12,14 +12,14 @@ gems                : ["jekyll-paginate"]
 paginate            : 5
 
 # Setup
-title               : Xaree
-tagline             : Tech Notes
-description         : 岡。開發
+title               : Neo's メモ帳
+tagline             : C#
+description         : Neo's memo about programming
 author:
-  name              : "Xaree Lee"
-  email             : "xareelee@gmail.com"
-  url               : "http://xareelee.github.io/"
-  facebook_username : leondemon
-  twitter_username  : xareelee
-  github_username   : xareelee
+  name              : "Neo Ho"
+  email             : "neofelisho@gmail.com"
+  url               : "http://neofelisho.github.io/"
+  facebook_username : neofelisho
+  twitter_username  : neofelisho
+  github_username   : neofelisho
   
