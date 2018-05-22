@@ -6,7 +6,8 @@ categories  : post
 tags        : [azure, redis, timeout, application insights]
 ---
 
-## Problems
+**Story**
+There were many failed requests while we testing our system by VSTS cloud test. Concurrent 10000 users kept 
 ![Picture-01](https://2.bp.blogspot.com/-vtXs8coCoXg/Wv_I92kcKjI/AAAAAAAAUaU/tKeRGJ_QT2YmBwJ-6EH2zSbmHfbayCkfwCLcBGAs/s1600/Diagnostic-timeout-exceptions-for-redis-01.png)
 >Timeout performing HEXISTS XXX.YYY:OAuthTokenStorages:AccessToken, inst: 267, mgr: Inactive, err: never, queue: 0, qu: 0, qs: 0, qc: 0, wr: 0, wq: 0, in: 0, ar: 0, clientName: RD__________F9, serverEndpoint: Unspecified/xxx.redis.cache.windows.net:6380, keyHashSlot: 1758, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=45,Free=32722,Min=1,Max=32767) (Please take a look at this article for some common client-side issues that can cause timeouts: http://stackexchange.github.io/StackExchange.Redis/Timeouts) 
 
@@ -30,6 +31,14 @@ I added logs in constructor of Redis multiplextor to make sure that we kept sing
 [And according to JonCole's another post about ThreadPool](https://gist.github.com/JonCole/e65411214030f0d823cb): in my first exception, there are 45 busy worker threads now and our system is configured to allow 1 minimum worker thread. So our system would cause (45-1)*500ms = 22 seconds delay...OMG.
 
 `Resolution`: Currently we use P1 pricing tier of WebApp. It's single core with 1.75GB RAM. So maybe we should increase the "minIoThreads" and "minWorkerThreads" to 100 or more in configuration settings.
+```csharp=
+//Alter minWorkerThreads and minIoThreads settings
+ThreadPool.SetMinThreads(256, 16);
+```
+
+`Before` [minWorkerThread = 1](https://flic.kr/p/26jaHpY)
+
+`After` [minWorerTHreads = 100](https://flic.kr/p/26jaHpY)
 
 `Reference` [.NET Threadpool and ASP.NET Settings](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox#net-threadpool-and-aspnet-settings)
 
@@ -39,7 +48,7 @@ I added logs in constructor of Redis multiplextor to make sure that we kept sing
 
 `Problem`: **Lack async**
 
-Obviously, but I have to do more test about the effect between sync and async in Redis utilization.
+Obviously, but I have to do [more test](https://neofelisho.github.io/neofelisho.github.io/post/2018/05/22/2018-05-22-test-redis-sync-timeout.html) about the effect between sync and async in Redis utilization.
 
 ---
 
