@@ -6,15 +6,12 @@ categories  : post
 tags        : [azure, redis, timeout, application insights]
 ---
 
-# Diagnostic timeout exceptions in StackExchange.Redis for Azure Redis Cache
-###### tags: `azure` `redis` `timeout` `application insights`
-
 ## Problems
 ![Picture-01](https://2.bp.blogspot.com/-vtXs8coCoXg/Wv_I92kcKjI/AAAAAAAAUaU/tKeRGJ_QT2YmBwJ-6EH2zSbmHfbayCkfwCLcBGAs/s1600/Diagnostic-timeout-exceptions-for-redis-01.png)
 >Timeout performing HEXISTS XXX.YYY:OAuthTokenStorages:AccessToken, inst: 267, mgr: Inactive, err: never, queue: 0, qu: 0, qs: 0, qc: 0, wr: 0, wq: 0, in: 0, ar: 0, clientName: RD__________F9, serverEndpoint: Unspecified/xxx.redis.cache.windows.net:6380, keyHashSlot: 1758, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=45,Free=32722,Min=1,Max=32767) (Please take a look at this article for some common client-side issues that can cause timeouts: http://stackexchange.github.io/StackExchange.Redis/Timeouts) 
 
 ![Picture-02](https://4.bp.blogspot.com/-S4H1S4cWlcA/Wv_JcxvoYyI/AAAAAAAAUac/XBr29445ZcoclhYRukjB4bH-rFKMAC-kACLcBGAs/s1600/Diagnostic-timeout-exceptions-for-redis-02.png)
->Timeout performing ZRANGEBYSCORE issuenumber:1, inst: 1, mgr: Inactive, err: never, queue: 4, qu: 0, qs: 4, qc: 0, wr: 0, wq: 0, in: 287, ar: 0, clientName: RD00155DB10567, serverEndpoint: Unspecified/jsti-webapi-redis.redis.cache.windows.net:6380, keyHashSlot: 5222, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=12,Free=32755,Min=1,Max=32767) (Please take a look at this article for some common client-side issues that can cause timeouts: http://stackexchange.github.io/StackExchange.Redis/Timeouts)
+>Timeout performing ZRANGEBYSCORE ixxxr:1, inst: 1, mgr: Inactive, err: never, queue: 4, qu: 0, qs: 4, qc: 0, wr: 0, wq: 0, in: 287, ar: 0, clientName: RD__________67, serverEndpoint: Unspecified/xxx.redis.cache.windows.net:6380, keyHashSlot: 5222, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=12,Free=32755,Min=1,Max=32767) (Please take a look at this article for some common client-side issues that can cause timeouts: http://stackexchange.github.io/StackExchange.Redis/Timeouts)
 >
 ---
 
@@ -33,6 +30,10 @@ I added logs in constructor of Redis multiplextor to make sure that we kept sing
 [And according to JonCole's another post about ThreadPool](https://gist.github.com/JonCole/e65411214030f0d823cb): in my first exception, there are 45 busy worker threads now and our system is configured to allow 1 minimum worker thread. So our system would cause (45-1)*500ms = 22 seconds delay...OMG.
 
 `Resolution`: Currently we use P1 pricing tier of WebApp. It's single core with 1.75GB RAM. So maybe we should increase the "minIoThreads" and "minWorkerThreads" to 100 or more in configuration settings.
+
+`Reference` [.NET Threadpool and ASP.NET Settings](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox#net-threadpool-and-aspnet-settings)
+
+`Reference` [ThreadPool.SetMinThreads Method](https://msdn.microsoft.com/en-us/library/system.threading.threadpool.setminthreads(v=vs.110).aspx)
 
 ---
 
