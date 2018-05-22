@@ -19,6 +19,8 @@ Our system uses Redis as OAuth token storage, it looks kind of what Spring Frame
 <add name="RedisConnection" connectionString="somewhere.redis.cache.windows.net:6380,password=somepassword,ssl=True,abortConnect=False,connectTimeout=30000,syncTimeout=10000" />
 ```
 
+`Reference` [Configuration Options](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options), [Investigating timeout exceptions in StackExchange.Redis for Azure Redis Cache](https://azure.microsoft.com/zh-tw/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/)
+
 `Testing Result`
 
 syncTimeout=1000[syncTimeout=1000](https://c1.staticflickr.com/1/898/41375602575_cbfbccd8ba_o_d.png)
