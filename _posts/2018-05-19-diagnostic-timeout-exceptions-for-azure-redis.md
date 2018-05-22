@@ -36,9 +36,9 @@ I added logs in constructor of Redis multiplextor to make sure that we kept sing
 ThreadPool.SetMinThreads(256, 16);
 ```
 
-`Before` [minWorkerThread = 1](https://flic.kr/p/26jaHpY)
+`Before` [minWorkerThread = 1](https://c1.staticflickr.com/1/882/41556068634_929899eb45_o_d.png)
 
-`After` [minWorerTHreads = 100](https://flic.kr/p/26jaHpY)
+`After` [minWorerTHreads = 100](https://c1.staticflickr.com/1/829/42230321742_e658f7de18_o_d.png)
 
 `Reference` [.NET Threadpool and ASP.NET Settings](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox#net-threadpool-and-aspnet-settings)
 

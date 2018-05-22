@@ -21,9 +21,9 @@ Our system uses Redis as OAuth token storage, it looks kind of what Spring Frame
 
 `Testing Result`
 
-syncTimeout=1000[syncTimeout=1000](https://flic.kr/p/263dM9c)
+syncTimeout=1000[syncTimeout=1000](https://c1.staticflickr.com/1/898/41375602575_cbfbccd8ba_o_d.png)
 
-syncTimeout=5000[syncTimeout=5000](https://flic.kr/p/24Efc3C)
+syncTimeout=5000[syncTimeout=5000](https://c1.staticflickr.com/1/951/40470558420_730575886f_o_d.png)
 
 We got a little improvement...
 
@@ -35,7 +35,7 @@ Although it looked all ok from App Service Plan's monitor, but we still tested i
 
 `Testing Result`
 
-[syncTimeout=5000 and 1.8x intance counts](https://flic.kr/p/27kNmoj)
+[syncTimeout=5000 and 1.8x intance counts](https://c1.staticflickr.com/1/965/42230890302_93accccc39_o_d.png)
 
 --
 
