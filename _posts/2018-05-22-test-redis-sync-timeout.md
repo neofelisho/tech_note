@@ -12,15 +12,15 @@ tags        : [azure, redis, timeout, syncTimeout]
 
 ---
 
-`Problem` Lack async
+`Problem` **Lack async**
 
-Our system uses Redis as OAuth token storage, it looks kind of what Spring Framework does. But our edition uses no async/await function when accessing Redis. I altered the Redis connection setting to make sure what the problem was.
+Our system uses Redis as OAuth token storage, it looks kind of what Spring Framework does. But our edition uses no async/await function when accessing Redis. I altered the Redis connection setting to make sure what the problem was. (faster way to ease this problem)
 
 ```xml=
 <add name="RedisConnection" connectionString="somewhere.redis.cache.windows.net:6380,password=somepassword,ssl=True,abortConnect=False,connectTimeout=10000,syncTimeout=5000" />
 ```
 
-`Reference` [Configuration Options](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options), [Investigating timeout exceptions in StackExchange.Redis for Azure Redis Cache](https://azure.microsoft.com/zh-tw/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/)
+`Reference` **[Configuration Options](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options), [Investigating timeout exceptions in StackExchange.Redis for Azure Redis Cache](https://azure.microsoft.com/zh-tw/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/)**
 
 `Testing Result`
 
@@ -32,7 +32,7 @@ We got a little improvement...
 
 ---
 
-`Problem` Computation bottleneck
+`Problem` **Computation bottleneck**
 
 Although it looked all ok from App Service Plan's monitor, but we still tested it. We increased the instance count from 10 to 18 (1.8x), and we got only 15%(?) failed request now (~30% when we only had 10 instances).
 

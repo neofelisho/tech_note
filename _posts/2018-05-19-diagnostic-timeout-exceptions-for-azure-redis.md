@@ -7,7 +7,7 @@ tags        : [azure, redis, timeout, application insights]
 ---
 
 **Story**
-There were many failed requests while we testing our system by VSTS cloud test. Concurrent 10000 users kept 
+There were many failed requests while we testing our system by VSTS cloud test. Concurrent 10000 users kept playing games or viewing reports.
 ![Picture-01](https://2.bp.blogspot.com/-vtXs8coCoXg/Wv_I92kcKjI/AAAAAAAAUaU/tKeRGJ_QT2YmBwJ-6EH2zSbmHfbayCkfwCLcBGAs/s1600/Diagnostic-timeout-exceptions-for-redis-01.png)
 >Timeout performing HEXISTS XXX.YYY:OAuthTokenStorages:AccessToken, inst: 267, mgr: Inactive, err: never, queue: 0, qu: 0, qs: 0, qc: 0, wr: 0, wq: 0, in: 0, ar: 0, clientName: RD__________F9, serverEndpoint: Unspecified/xxx.redis.cache.windows.net:6380, keyHashSlot: 1758, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=45,Free=32722,Min=1,Max=32767) (Please take a look at this article for some common client-side issues that can cause timeouts: http://stackexchange.github.io/StackExchange.Redis/Timeouts) 
 
@@ -20,7 +20,7 @@ There were many failed requests while we testing our system by VSTS cloud test. 
 
 During the load test, we kept monitoringthe statistics of Redis, App Service Plan and VM of MS-SQL. The CPU, memory and disk I/O loading seemed to be ok. So maybe there are something wrong with network, or with our codes to manipulate Redis.
 
-I added logs in constructor of Redis multiplextor to make sure that we kept singleton in each web sites. It passed.
+We added logs in constructor of Redis multiplextor to make sure that we kept singleton in each web sites. It passed.
 
 ---
 
