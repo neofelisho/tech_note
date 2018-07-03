@@ -8,7 +8,7 @@ tags        : [Azure, Redis, RedisConnectionException, SocketClosed, Network Sta
 
 `Problem` There are several distributed webjobs in our system. Last weekend (late June 2018) there were many exceptions when our jobs tried to query data from specific one Redis server. But they could query other Redis servers normally.
 
-![The inner exception message](http://pic.link)
+![The inner exception message](https://c1.staticflickr.com/1/914/42263223555_22f7c7d524_o.png)
 
 These jobs all followed the suggestion from this Azure doc: [Quickstart: Use Azure Redis Cache with a .NET application](https://docs.microsoft.com/en-us/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) to connect to Redis server.
 
